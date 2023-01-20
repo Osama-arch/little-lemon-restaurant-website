@@ -1,54 +1,20 @@
-import './App.css';
+import Testimonial from './sections/Testimonial';
 import Navbar from './component/Navbar';
-import MenuCart from './component/MenuCart';
-import Testimonial from './component/Testimonial';
-import logo from './assets/icons/lemonLogo.png';
-import heroimg from './assets/images/restauranfood.jpg';
+import logo from './assets/icons/logo.png';
 import loby from './assets/images/loby.jpg';
 import hall from './assets/images/hall.jpg';
+import Header from './sections/Header';
+import Hero from './sections/Hero';
+import CartList from './sections/CartList';
 function App() {
   const style = { width: '150px', height: '200px' };
   return (
     <>
-      <header>
-        <Navbar></Navbar>
-        <h1>
-          <img src={logo} alt='logo' style={style} />
-          LITTLE LEMON
-        </h1>
-      </header>
+      <Header page={'home'} />
       <main>
-        <section className='hero'>
-          <div className='hero-container'>
-            <article className='hero-article'>
-              <h2>Little Lemon </h2>
-              <p>Chicago</p>
-              <p>
-                We are a family owned Mediterranean restaurant , focused on
-                traditional recipes served with a modern twist.
-              </p>
-              <button type='button'>reserve a table</button>
-            </article>
-            <div className='hero-img'>
-              <img src={heroimg} alt='hero' style={style} />
-            </div>
-          </div>
-        </section>
-        <section className='menu'>
-          <div className='menu-container'>
-            <article>
-              <h3>This weeks specials!</h3>
-              <button type='button'>online menu</button>
-            </article>
-            <MenuCart />
-          </div>
-        </section>
-        <section className='testimonial'>
-          <div className='testimonial-container'>
-            <h4>What our costumers say!</h4>
-            <Testimonial />
-          </div>
-        </section>
+        <Hero />
+        <CartList />
+        <Testimonial />
         <section className='about'>
           <div className='about-container'>
             <article className='about-article'>
@@ -82,7 +48,7 @@ function App() {
             <a href='https://www.telegram.com'>a</a>
           </div>
         </div>
-        <Navbar />
+        <Navbar page={'home'} />
 
         <div>
           <div className='form'>
