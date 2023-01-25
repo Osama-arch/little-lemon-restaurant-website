@@ -6,12 +6,12 @@ function MenuCart({ items }) {
       {items.map((item) => {
         const { id, title, price, desc, imageUrl } = item;
         return (
-          <div key={id} className='cart-item'>
+          <div key={id} className='cart-item bg-gradient'>
             <div>
               <img src={imageUrl} alt={title} className='img ' />
             </div>
 
-            <h4>{title}</h4>
+            <h5>{title}</h5>
             <p>{price}$</p>
             <div className='menu-descreption'>
               <p>{desc}</p>

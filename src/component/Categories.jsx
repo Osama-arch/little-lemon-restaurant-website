@@ -2,7 +2,7 @@ import React from 'react';
 
 function Categories({ filterItems }) {
   return (
-    <div>
+    <>
       <div className='order-menu-container flex-sb'>
         <button className='btn-order' onClick={() => filterItems('lunch')}>
           Lunch
@@ -19,7 +19,7 @@ function Categories({ filterItems }) {
         </button>
         <button className='btn-order'>Drinks</button>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import MenuCart from '../component/MenuCart';
 import Categories from '../component/Categories';
 import items from '../component/cartData';
-function CartList() {
+function CartList({ menuRef }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [menuItems, setMenuItems] = useState(items);
   const [categories, setCategories] = useState([]);
@@ -25,9 +25,9 @@ function CartList() {
     }
   };
   return (
-    <section className='menu'>
+    <section className='menu' id='menu' ref={menuRef}>
       <div className='menu-container center flex-col'>
-        <article className='menu-article flex-sb'>
+        <article className='menu-article flex-sb '>
           <h3>
             {windowWidth >= 600
               ? 'This weeks specials!'
@@ -37,7 +37,7 @@ function CartList() {
             online menu
           </button>
         </article>
-        {windowWidth < 600 && <Categories filterItems={filterItems} />}
+        <Categories filterItems={filterItems} />
         <MenuCart items={menuItems} />
       </div>
     </section>

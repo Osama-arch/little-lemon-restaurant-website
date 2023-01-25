@@ -1,67 +1,29 @@
-import Testimonial from './sections/Testimonial';
-import Navbar from './component/Navbar';
-import logo from './assets/icons/logo.png';
-import loby from './assets/images/loby.jpg';
-import hall from './assets/images/hall.jpg';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import Booking from './pages/Booking';
 import Header from './sections/Header';
+import Footer from './sections/Footer';
+import AboutUs from './sections/AboutUs';
 import Hero from './sections/Hero';
 import CartList from './sections/CartList';
 function App() {
-  const style = { width: '150px', height: '200px' };
   return (
     <>
-      <Header page={'home'} />
-      <main>
-        <Hero />
-        <CartList />
-        <Testimonial />
-        <section className='about'>
-          <div className='about-container'>
-            <article className='about-article'>
-              <h3>Little Lemon</h3>
-              <p>Chicago</p>
-              <p>
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.
-                Exercitation veniam consequat sunt nostrud amet. Amet minim
-                mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-                Velit officia consequat duis enim velit mollit.
-              </p>
-            </article>
-            <div className='aboutImg-container'>
-              <img src={hall} alt='hall' style={style} />
-              <img src={loby} alt='loby' style={style} />
-            </div>
-          </div>
-        </section>
-      </main>
-      <footer className='footer'>
-        <div>
-          <div>
-            <img src={logo} alt='logo' style={style} />
-            LITTLE LEMON
-          </div>
-          <div className='socials'>
-            <a href='https://www.facebook.com'>a</a>
-            <a href='https://www.twitter.com'>a</a>
-            <a href='https://www.instagram.com'>a</a>
-            <a href='https://www.telegram.com'>a</a>
-          </div>
-        </div>
-        <Navbar page={'home'} />
+      <Router>
+        <Header />
+        <main>
+          <Hero />
+          <Routes>
+            <Route path='/' element={<HomePage />}>
+              <Route path='#about' element={<AboutUs />} />
+              <Route path='#menu' element={<CartList />} />
+            </Route>
+            <Route path='/reservation' element={<Booking />} />
+          </Routes>
+        </main>
 
-        <div>
-          <div className='form'>
-            <label htmlFor='subscribe'>Subscribe!</label>
-            <input type='email' name='' id='subscribe' />
-          </div>
-          <div className='address'>
-            <p>53, East Birchwood Ave. Brooklyn, New York 11201, USA.</p>
-            <p>contact@littlelemon.com</p>
-            <p>{`(123) 456 - 7890`}</p>
-          </div>
-        </div>
-      </footer>
+        <Footer />
+      </Router>
     </>
   );
 }

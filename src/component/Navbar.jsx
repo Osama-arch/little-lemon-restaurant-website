@@ -1,6 +1,34 @@
-import React, { useRef } from 'react';
-
-function Navbar({ locate, page }) {
+import { Link, useLocation } from 'react-router-dom';
+function Navbar({ locate, aboutRef, menuRef }) {
+  const location = useLocation();
+  const pathMatchRoute = (route) => {
+    if (route === location.pathname) {
+      return true;
+    }
+  };
+  const pathMatchHash = (hash) => {
+    if (hash === location.hash) {
+      return true;
+    }
+  };
+  console.log(location.hash);
+  const handleClick = (root) => {
+    const element = document.getElementById(root);
+    if (element) {
+      // 👇 Will scroll smoothly to the top of the next section
+      window.scrollTo({
+        top: element.offsetTop,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+  };
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   return (
     <nav
       className={
@@ -8,30 +36,57 @@ function Navbar({ locate, page }) {
           ? 'header-nav'
           : locate === 'sidebar'
           ? 'side-nav '
-          : null
+          : 'footer-nav'
       }>
       <ul className='navbar '>
         <li>
-          <a href='#' className={page === 'home' ? 'active' : null}>
+          <Link
+            to='/'
+            className={
+              pathMatchRoute('/') && pathMatchHash('') ? 'active' : null
+            }
+            onClick={() => {
+              scrollTop();
+            }}>
             home
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='#'>about</a>
+          <Link
+            to='/#about'
+            className={
+              pathMatchRoute('/') && pathMatchHash('#about') ? 'active' : null
+            }
+            onClick={() => {
+              handleClick('about');
+            }}>
+            about
+          </Link>
         </li>
         <li>
-          <a href='#'>menu</a>
+          <Link
+            to='/#menu'
+            className={
+              pathMatchRoute('/') && pathMatchHash('#menu') ? 'active' : null
+            }
+            onClick={() => {
+              handleClick('menu');
+            }}>
+            Menu
+          </Link>
         </li>
         <li>
-          <a href='#' className={page === 'reservation' ? 'active' : null}>
+          <Link
+            to='/reservation'
+            className={pathMatchRoute('/reservation') ? 'active' : null}>
             reservations
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='#'>order online</a>
+          <a>order online</a>
         </li>
         <li>
-          <a href='#'>login</a>
+          <a>login</a>
         </li>
       </ul>
     </nav>
