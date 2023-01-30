@@ -11,7 +11,6 @@ function Navbar({ locate, aboutRef, menuRef }) {
       return true;
     }
   };
-  console.log(location.hash);
   const handleClick = (root) => {
     const element = document.getElementById(root);
     if (element) {

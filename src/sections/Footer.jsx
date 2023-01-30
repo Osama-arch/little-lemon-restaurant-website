@@ -2,8 +2,14 @@ import React from 'react';
 
 import Navbar from '../component/Navbar';
 import logo from '../assets/icons/logo.png';
-
+import { useState } from 'react';
 function Footer() {
+  const [email, setEmail] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setEmail('');
+    console.log('Form submitted');
+  };
   return (
     <footer className='footer '>
       <div className='footer-container center'>
@@ -42,16 +48,21 @@ function Footer() {
         </div>
         <Navbar page={'home'} />
 
-        <div>
-          <div className='form'>
+        <div className='third-col'>
+          <form className='form' onSubmit={handleSubmit}>
             <label htmlFor='subscribe'>Subscribe!</label>
-            <input
-              type='email'
-              name=''
-              id='subscribe'
-              placeholder='Type your E-mail'
-            />
-          </div>
+            <div>
+              <input
+                type='email'
+                name='email'
+                value={email}
+                id='subscribe'
+                placeholder='Type your E-mail'
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input type='submit' value='submit' disabled={!email} />
+            </div>
+          </form>
           <div className='address'>
             <p>53, East Birchwood Ave. Brooklyn, New York 11201, USA.</p>
             <p>contact@littlelemon.com</p>

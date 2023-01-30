@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Navbar from '../component/Navbar';
 import logo from '../assets/icons/logo.png';
 import { HiBars3 } from 'react-icons/hi2';
 import { RiCloseLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-function Header({ aboutRef, menuRef }) {
+function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [headerTopPosition, setHeaderTopPosition] = useState(0);
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowWidth(window.innerWidth);
@@ -17,30 +19,60 @@ function Header({ aboutRef, menuRef }) {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, [windowWidth]);
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+  const handleScroll = useCallback(() => {
+    const currentScrollPos = window.scrollY;
+
+    if (currentScrollPos > prevScrollPos && !showSidebar) {
+      setHeaderTopPosition(-80);
+    } else {
+      setHeaderTopPosition(0);
+    }
+
+    setPrevScrollPos(currentScrollPos);
+  }, [prevScrollPos, showSidebar]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos, handleScroll]);
   return (
     <>
-      {showSidebar && <div id='overlay'></div>}
-      <header className='header '>
+      {showSidebar && (
+        <div id='overlay' onClick={() => setShowSidebar(false)}></div>
+      )}
+      <header
+        className='header '
+        style={{ top: `${headerTopPosition}px`, transitionDuration: '.6s' }}>
         <div className='header-container flex-sb center flex-align-center'>
           <div className='logo'>
-            <Link to='/'>
+            <Link
+              to='/'
+              onClick={() => {
+                scrollTop();
+              }}>
               <img src={logo} alt='logo' className='img' />
             </Link>
             <h1>LITTLE LEMON</h1>
           </div>
 
-          <Navbar
-            locate={'header'}
-            aboutRef={aboutRef}
-            menuRef={menuRef}></Navbar>
+          <Navbar locate={'header'}></Navbar>
 
           {showSidebar ? (
             <RiCloseLine
               size='3rem'
               className='transition svg-hover burger'
+              cursor={'pointer'}
               onClick={() => setShowSidebar(false)}></RiCloseLine>
           ) : (
             <HiBars3
+              cursor={'pointer'}
               size='3rem'
               className='transition svg-hover burger'
               onClick={() => setShowSidebar(true)}
@@ -52,10 +84,7 @@ function Header({ aboutRef, menuRef }) {
                 className={`transition ${
                   showSidebar ? 'sidebar active' : 'sidebar'
                 }`}>
-                <Navbar
-                  locate={'sidebar'}
-                  aboutRef={aboutRef}
-                  menuRef={menuRef}></Navbar>
+                <Navbar locate={'sidebar'}></Navbar>
               </div>
             </>
           )}

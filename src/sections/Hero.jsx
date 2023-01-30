@@ -1,6 +1,6 @@
 import heroimg from '../assets/images/restauranfood.jpg';
-import { useNavigate, Link } from 'react-router-dom';
-function Hero() {
+import { Link } from 'react-router-dom';
+function Hero({ page }) {
   return (
     <section className='hero-section  '>
       <article className='hero-article center flex-col'>
@@ -17,9 +17,13 @@ function Hero() {
           </div>
         </div>
 
-        <Link to='/reservation' className='btn'>
-          reserve a table
-        </Link>
+        <div>
+          <Link
+            to={page === 'home' ? '/reservation' : '/#menu'}
+            className='btn'>
+            {page === 'home' ? 'reserve a table' : 'Order for delivery'}
+          </Link>
+        </div>
       </article>
     </section>
   );

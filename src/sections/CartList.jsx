@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import MenuCart from '../component/MenuCart';
 import Categories from '../component/Categories';
 import items from '../component/cartData';
+import { Link } from 'react-router-dom';
 function CartList({ menuRef }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [menuItems, setMenuItems] = useState(items);
-  const [categories, setCategories] = useState([]);
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowWidth(window.innerWidth);
@@ -33,9 +33,10 @@ function CartList({ menuRef }) {
               ? 'This weeks specials!'
               : 'ORDER FOR DELIVERY!'}
           </h3>
-          <button type='button' className='btn'>
-            online menu
-          </button>
+
+          <div>
+            <Link className='btn'>online menu</Link>
+          </div>
         </article>
         <Categories filterItems={filterItems} />
         <MenuCart items={menuItems} />

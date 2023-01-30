@@ -7,6 +7,7 @@ import AboutUs from '../sections/AboutUs';
 function HomePage() {
   return (
     <>
+      <Hero page='home' />
       <CartList />
       <Testimonial />
       <AboutUs />

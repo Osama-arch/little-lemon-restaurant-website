@@ -4,11 +4,11 @@ function Categories({ filterItems }) {
   return (
     <>
       <div className='order-menu-container flex-sb'>
-        <button className='btn-order' onClick={() => filterItems('lunch')}>
-          Lunch
-        </button>
         <button className='btn-order' onClick={() => filterItems()}>
           Mains
+        </button>
+        <button className='btn-order' onClick={() => filterItems('lunch')}>
+          Lunch
         </button>
         <button className='btn-order' onClick={() => filterItems('dessert')}>
           Desserts
