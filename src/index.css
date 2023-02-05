@@ -956,18 +956,17 @@ input:invalid {
     position: relative;
     left: 75%;
   }
-  .form {
+  footer .form {
     position: absolute;
-    display: inline-block;
     bottom: 0;
     width: 60%;
-    left: 25%;
+    left: 20%;
   }
   footer input[type='email'] {
-    width: 35%;
+    width: 70%;
   }
   footer input[type='submit'] {
-    width: 10%;
+    width: 30%;
   }
 }
 /* booking section */
