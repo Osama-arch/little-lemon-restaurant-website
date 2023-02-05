@@ -1,4 +1,13 @@
-function Booking({ formState, today, handleChange, handleSubmit, index }) {
+function Booking(props) {
+  const {
+    formState,
+    today,
+    handleChange,
+    handleSubmit,
+    index,
+    handleBlur,
+    guestsError,
+  } = props;
   const { availableDate, availableTimes, guests, occasion, textArea } =
     formState;
 
@@ -39,7 +48,9 @@ function Booking({ formState, today, handleChange, handleSubmit, index }) {
           name='guests'
           value={guests}
           onChange={(e) => handleChange(e)}
+          onBlur={(e) => handleBlur(e)}
         />
+        {guestsError()}
       </div>
       <div>
         <label htmlFor='occasion'>Occasion:</label>

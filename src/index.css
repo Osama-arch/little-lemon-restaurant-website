@@ -1086,3 +1086,9 @@ select:focus {
   border-radius: 1rem;
   border: 1px solid transparent;
 }
+.error-form {
+  color: red;
+  display: block;
+  position: relative;
+  transform: translateY(-20px);
+}
