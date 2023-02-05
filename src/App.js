@@ -5,6 +5,7 @@ import Footer from './sections/Footer';
 import AboutUs from './sections/AboutUs';
 import CartList from './sections/CartList';
 import Reservation from './pages/Reservation';
+import ConfirmedBooking from './pages/ConfirmedBooking';
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
               <Route path='#menu' element={<CartList />} />
             </Route>
             <Route path='/reservation' element={<Reservation />} />
+            <Route path='/confirmedBooking' element={<ConfirmedBooking />} />
           </Routes>
         </main>
 

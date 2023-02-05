@@ -241,9 +241,13 @@ p {
   border: none;
   background-color: transparent;
 }
-
-.basket:hover {
+.order-btn {
+  color: var(--clr-primary-3);
+}
+.basket:hover,
+.order-btn:hover {
   transition: var(--transition);
+  transform: scale(1.05);
 }
 .logo {
   width: 202px;
@@ -419,9 +423,23 @@ main {
 /* order  variants */
 .order-menu-container {
   overflow: scroll;
+  padding-bottom: 1rem;
 }
 .order-menu-container::-webkit-scrollbar {
-  display: none;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+}
+.order-menu-container::-webkit-scrollbar-button {
+  background: transparent;
+}
+.order-menu-container::-webkit-scrollbar-thumb {
+  background-color: var(--clr-primary-1);
+  border-radius: 2.5px;
+}
+.order-menu-container::-webkit-scrollbar-track {
+  background: var(--clr-primary-2);
+  border-radius: 2.5px;
 }
 .btn-order {
   cursor: pointer;
@@ -432,6 +450,9 @@ main {
   border-radius: var(--radius);
   border: none;
   white-space: nowrap;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none;
 }
 .btn-order:focus {
   background-color: var(--clr-primary-2);
@@ -937,6 +958,7 @@ input:invalid {
   }
   .form {
     position: absolute;
+    display: inline-block;
     bottom: 0;
     width: 60%;
     left: 25%;
@@ -1020,6 +1042,39 @@ select:focus {
   .booking input,
   .booking textarea {
     font-size: 1rem;
+  }
+}
+/* confirm reserve */
+.confirmed-booking {
+  margin-block: 2rem;
+
+  padding-block: 3rem;
+}
+.confirmed-container {
+  padding-block: 3rem;
+  background-color: var(--clr-primary-2);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+.confirmed-booking h3 {
+  color: var(--clr-primary-1);
+  letter-spacing: 0.25ch;
+}
+.confirmed-booking p {
+  color: var(--clr-white);
+}
+.svg-check {
+  fill: var(--clr-grey-2);
+  animation: 1s linear 1s infinite alternate checkFill;
+}
+@keyframes checkFill {
+  100% {
+    transform: scale(1.02);
+    fill: var(--clr-primary-1);
   }
 }
 /* Utility */

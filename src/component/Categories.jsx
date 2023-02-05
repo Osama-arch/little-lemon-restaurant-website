@@ -13,11 +13,15 @@ function Categories({ filterItems }) {
         <button className='btn-order' onClick={() => filterItems('dessert')}>
           Desserts
         </button>
-        <button className='btn-order'>A La Carte</button>
         <button className='btn-order' onClick={() => filterItems('specials')}>
           Specials
         </button>
-        <button className='btn-order'>Drinks</button>
+        <button className='btn-order' onClick={() => filterItems('drinks')}>
+          Drinks
+        </button>
+        <button className='btn-order' onClick={() => filterItems()}>
+          La de carte
+        </button>
       </div>
     </>
   );

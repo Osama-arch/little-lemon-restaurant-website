@@ -51,6 +51,7 @@ function Footer() {
         <div className='third-col'>
           <form className='form' onSubmit={handleSubmit}>
             <label htmlFor='subscribe'>Subscribe!</label>
+
             <div>
               <input
                 type='email'
